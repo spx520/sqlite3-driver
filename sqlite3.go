@@ -83,7 +83,7 @@ func (driver *Driver) Migrate(f file.File) error {
 
 	queries := splitStatements(string(f.Content))
 	for _, query := range queries {
-		if _, err := tx.Exec(query); err != nil {
+		if _, err = tx.Exec(query); err != nil {
 			sqliteErr, isErr := err.(gosqlite3.Error)
 			if isErr {
 				// The sqlite3 library only provides error codes, not position information. Output what we do know.
